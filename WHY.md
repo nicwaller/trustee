@@ -37,7 +37,7 @@ The wrapper `trustee-send` would send a message to `myserver` when the job is fi
 
 # Should I also build a scheduler?
 
-* Locking with Redis to ensure run-once semantics. *Maybe some people can get away without this because they're using a fancy container orchestrator or whatever. Or maybe they can use Heartbeat or Consul Lock to ensure that some cron-type process is running in only one place.*
+* Locking with Redis to ensure run-once semantics. *Maybe some people can get away without this because they're using a fancy container orchestrator or whatever. Or maybe they can use Heartbeat or Consul Lock to ensure that some cron-type process is running in only one place. Even Sensu could be used in [round robin](https://sensuapp.org/docs/latest/clients#round-robin-client-subscriptions) mode to run a short-lived but frequent scheduler process.*
 * Schedule recurring HTTP callbacks
     * Synchronous: wait for 200 status
     * Async: provide a webhook URI callback to indicate completion
@@ -89,6 +89,13 @@ The wrapper `trustee-send` would send a message to `myserver` when the job is fi
 * [AWS Elastic Beanstalk Worker](https://medium.com/@joelennon/running-cron-jobs-on-amazon-web-services-aws-elastic-beanstalk-a41d91d1c571)
 * [Cronitor](https://cronitor.io/)
 * DEFUNCT [Proby](http://probyapp.com/)
+* [Steward](https://steward.io/) - very similar! lightweight.
+* [SetCronJob](https://www.setcronjob.com/)
+* [WebTask.io](https://github.com/auth0/wt-cli/tree/master/sample-webtasks#cron)
+* [Pushmon](http://www.pushmon.com/cms/faq) - like [TimerCheck.io](https://alestic.com/2015/07/timercheck-scheduled-events-monitoring/)
+* [Datadog](https://github.com/DataDog/documentation/issues/18#issuecomment-37036248)
+* [Cronblast](https://cronblast.com/)
+* [Dead Man's Snitch](https://deadmanssnitch.com/)
 
 # Who cares?
 
