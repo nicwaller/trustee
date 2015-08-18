@@ -18,8 +18,8 @@ You schedule recurring jobs with cron, but you're unhappy because your jobs lack
 
 A RESTful API.
 
-    - recording job start, updates, and completion
-    - querying active and historic job results
+* recording job start, updates, and completion
+* querying active and historic job results
 
 A tiny wrapper command that enables reporting on any existing cron job.
 
@@ -55,6 +55,14 @@ The wrapper `trustee-send` would send a message to `myserver` when the job is fi
 * Some way to invoke traditional processes? *(A tiny HTTP listener that maps URIs onto local processes? Or a process that loads a local config file and self-registers for callbacks?)* Example: letting curator delete old Elasticsearch indices.
 * Avoid overlapping jobs with job capacity zones
 
+## Scheduler Implementation Thoughts
+
+An incremental scheduler is a short-lived process that looks for schedules that are ready to run, triggers their payloads, then exits. The main advantage is moving lock complexity outside the application and simplifying high availability. The main disadvantages are extra overhead in starting processes, reduced timing granularity, and worse throughput compared to a long-lived process. Maybe this could be balanced by running for a short but predictable duration.
+
+* Incremental scheduler built on [Later.js](http://bunkat.github.io/later/)
+* Distributed locking with [cronlock](https://github.com/kvz/cronlock)
+* Maybe Postgres as the database
+
 # Out of scope
 
 * Process supervision. Use something like Runit or supervisor.
@@ -81,6 +89,7 @@ The wrapper `trustee-send` would send a message to `myserver` when the job is fi
 * [Chronos](https://mesos.github.io/chronos/)
 * [Quartz](http://quartz-scheduler.org/)
 * [cronlock](https://github.com/kvz/cronlock)
+* [cron-as-a-service](https://www.npmjs.com/package/cron-as-a-service)
 
 ## SaaS alternatives
 
