@@ -47,7 +47,7 @@ The wrapper `trustee-send` would send a message to `myserver` when the job is fi
     * Renewal of dynamic schedules upon successful completion
     * Purging of dynamic schedules if TTL elapses without any successes
     * User-defined retry policy
-        - Only retry within target window
+        - Only retry within target window (I like the terminology used by [Condor](http://research.cs.wisc.edu/htcondor/manual/v7.6/2_12Time_Scheduling.html#SECTION003121200000000000000))
         - Retry on failure
         - Retry on partial completion
 * API could provide list of upcoming jobs / estimated next run time.
@@ -75,6 +75,10 @@ An incremental scheduler is a short-lived process that looks for schedules that 
 * Be an assembly of highly composable parts
 * Be a [twelve-factor app](http://12factor.net/)
 
+# Related theory
+
+* [Reliable Cron across the Planet](https://queue.acm.org/detail.cfm?id=2745840) describes how Google does cron
+
 # Related software
 
 * [fcron](http://fcron.free.fr/)
@@ -90,6 +94,11 @@ An incremental scheduler is a short-lived process that looks for schedules that 
 * [Quartz](http://quartz-scheduler.org/)
 * [cronlock](https://github.com/kvz/cronlock)
 * [cron-as-a-service](https://www.npmjs.com/package/cron-as-a-service)
+* [norc](https://github.com/darrellsilver/norc)
+* [Schyntax](http://bret.codes/schyntax-part-1/)
+* [resque-scheduler](https://github.com/resque/resque-scheduler)
+* [Jobber](http://dshearer.github.io/jobber/)
+* [highlander](https://github.com/chriscannon/highlander) or [flock](http://man7.org/linux/man-pages/man2/flock.2.html)
 
 ## SaaS alternatives
 
@@ -108,6 +117,7 @@ An incremental scheduler is a short-lived process that looks for schedules that 
 * [Cronblast](https://cronblast.com/)
 * [Dead Man's Snitch](https://deadmanssnitch.com/)
 * [CronAlarm](https://www.cronalarm.com/)
+* [cronasaservice](https://www.cronasaservice.com/)
 
 # Who cares?
 
@@ -122,6 +132,10 @@ https://twitter.com/tjholowaychuk/status/305117527212699648
 
 > I am in need of a REST API to schedule tasks, modify existing schedule, etc.
 https://github.com/mher/flower/issues/448#issue-100956833
+
+And here's some people that really don't care.
+
+* https://news.ycombinator.com/item?id=8307305
 
 # Other names that were considered
 
