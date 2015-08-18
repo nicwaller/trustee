@@ -96,6 +96,7 @@ The wrapper `trustee-send` would send a message to `myserver` when the job is fi
 * [Datadog](https://github.com/DataDog/documentation/issues/18#issuecomment-37036248)
 * [Cronblast](https://cronblast.com/)
 * [Dead Man's Snitch](https://deadmanssnitch.com/)
+* [CronAlarm](https://www.cronalarm.com/)
 
 # Who cares?
 
