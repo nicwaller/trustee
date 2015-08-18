@@ -15,33 +15,29 @@ You schedule recurring jobs with cron, but you're unhappy because your jobs lack
 
 # Features
 
-* A RESTful API for:
+A RESTful API.
+
     - recording job start, updates, and completion
     - querying active and historic job results
-* A nice RESTful API for making queries about jobs.
-* A nice RESTful API that supports:
-    * Recording progress and completion of ad-hoc jobs
-    * Querying present and historic job results
-* Tiny wrapper command that enables reporting on any existing cron job.
 
-This is what I mean by a tiny reporting wrapper.
+A tiny wrapper command that enables reporting on any existing cron job.
 
     30 4 * * * /opt/morning_backup.sh
     30 4 * * * trustee -h myserver /opt/morning_backup.sh
 
-The wrapper `trustee-send` would send a message to `myserver` when the job is first started, every so often (heartbeat) while the job is running, and again finally when the job finishes. The heartbeat could include stdout/stderr, and the final message would include the exit code. Probably would want to support setting options in ~/.trustee instead of needing to specify them in the crontab.
+The wrapper `trustee-send` would send a message to `myserver` when the job is first started, every so often (heartbeat) while the job is running, and again finally when the job finishes. The heartbeat could include stdout/stderr, and the final message would include the exit code. Probably would want to support setting options in /etc/trustee and ~/.trustee instead of needing to specify them in the crontab. Another maybe useful flag would be TTL so the Trustee server can detect subsequent failures.
 
 # Future Plans
 
 * Receive over SQS/AMQP. *For jobs with many updates.*
 * Output to Graphite and Logstash *(and maybe AMQP?)*
 * Failure notifications by email or SNS. *Maybe as a separate component?*
-* A beautiful frontend. *Definitely a separate component.*
+* A beautiful frontend. *Definitely a separate installable component, but packaged together.*
 * A report generator. *Ugh.*
 
 # Should I also build a scheduler?
 
-* Locking with Redis to ensure run-once semantics. *Maybe some people can get away without this because they're using a fancy container orchestrator or whatever.*
+* Locking with Redis to ensure run-once semantics. *Maybe some people can get away without this because they're using a fancy container orchestrator or whatever. Or maybe they can use Heartbeat or Consul Lock to ensure that some cron-type process is running in only one place.*
 * Schedule recurring HTTP callbacks
     * Synchronous: wait for 200 status
     * Async: provide a webhook URI callback to indicate completion
@@ -91,6 +87,8 @@ The wrapper `trustee-send` would send a message to `myserver` when the job is fi
 * [IronWorker](http://www.iron.io/pricing/#worker)
 * [Google App Engine Cron](https://cloud.google.com/appengine/features/#cron)
 * [AWS Elastic Beanstalk Worker](https://medium.com/@joelennon/running-cron-jobs-on-amazon-web-services-aws-elastic-beanstalk-a41d91d1c571)
+* [Cronitor](https://cronitor.io/)
+* DEFUNCT [Proby](http://probyapp.com/)
 
 # Who cares?
 
@@ -108,4 +106,4 @@ https://github.com/mher/flower/issues/448#issue-100956833
 
 # Other names that were considered
 
-Ravel. Cronit. Anacron. Mexicron. 
+Ravel. Cronit. Anacron. Mexicron. Old Faithful. Good old reliable Jake. Perfectionist. Hound. Seasonal. Recurrent. Periodic. Harmonic. Cyclist. Metronome. Rebeat. Beat. Rhythm. Harmony.
