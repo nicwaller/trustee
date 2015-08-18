@@ -12,6 +12,7 @@ You schedule recurring jobs with cron, but you're unhappy because your jobs lack
 * You already have periodic jobs running in production.
 * The jobs are heterogenous: various platforms and languages.
 * You don't want to waste time modifying applications.
+* You don't want to use a SaaS solution for this.
 
 # Features
 
@@ -51,7 +52,7 @@ The wrapper `trustee-send` would send a message to `myserver` when the job is fi
         - Retry on partial completion
 * API could provide list of upcoming jobs / estimated next run time.
 * Send email to start job (to be completed by a human)
-* Some way to invoke traditional processes? *(A tiny HTTP listener that maps URIs onto local processes? Or a process that loads a local config file and self-registers for callbacks?)*
+* Some way to invoke traditional processes? *(A tiny HTTP listener that maps URIs onto local processes? Or a process that loads a local config file and self-registers for callbacks?)* Example: letting curator delete old Elasticsearch indices.
 * Avoid overlapping jobs with job capacity zones
 
 # Out of scope
@@ -79,6 +80,7 @@ The wrapper `trustee-send` would send a message to `myserver` when the job is fi
 * [TeamCity](https://www.jetbrains.com/teamcity/)
 * [Chronos](https://mesos.github.io/chronos/)
 * [Quartz](http://quartz-scheduler.org/)
+* [cronlock](https://github.com/kvz/cronlock)
 
 ## SaaS alternatives
 
