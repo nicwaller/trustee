@@ -24,9 +24,11 @@ A RESTful API.
 A tiny wrapper command that enables reporting on any existing cron job.
 
     30 4 * * * /opt/morning_backup.sh
-    30 4 * * * trustee -h myserver /opt/morning_backup.sh
+    30 4 * * * trustee exec -h myserver /opt/morning_backup.sh
 
-The wrapper `trustee-send` would send a message to `myserver` when the job is first started, every so often (heartbeat) while the job is running, and again finally when the job finishes. The heartbeat could include stdout/stderr, and the final message would include the exit code. Probably would want to support setting options in /etc/trustee and ~/.trustee instead of needing to specify them in the crontab. Another maybe useful flag would be TTL so the Trustee server can detect subsequent failures.
+The wrapper `trustee exec` would send a message to `myserver` when the job is first started, every so often (heartbeat) while the job is running, and again finally when the job finishes. The heartbeat could include stdout/stderr, and the final message would include the exit code. Probably would want to support setting options in /etc/trustee and ~/.trustee instead of needing to specify them in the crontab. Another maybe useful flag would be TTL so the Trustee server can detect subsequent failures.
+
+In some cases `trustee exec` might not be quite what you want. Maybe you have a complicated cron task and you want to profile the first part, second part, and total runtime. In that case, you could use `trustee begin` and `trustee end`. Or maybe this would be better addressed with something like `trustee split` like a stopwatch lap counter.
 
 # Future Plans
 
@@ -132,6 +134,9 @@ https://twitter.com/tjholowaychuk/status/305117527212699648
 
 > I am in need of a REST API to schedule tasks, modify existing schedule, etc.
 https://github.com/mher/flower/issues/448#issue-100956833
+
+> How to record time taken by a cron to execute.
+http://serverfault.com/q/316527/23300
 
 And here's some people that really don't care.
 
